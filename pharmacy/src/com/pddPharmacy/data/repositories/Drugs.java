@@ -48,7 +48,6 @@ public class Drugs {
         for (Drug drug : drugs) {
             if (drug.getId() == id) {
                 drugs.remove(drug);
-                return;
             }
         }
         throw new IdDoesNotExist(id + " does not exist");
@@ -61,6 +60,15 @@ public class Drugs {
             }
         }
         throw new IdDoesNotExist("Drug with id " + id + " does not exist");
+    }
+
+    public void delete(Drug drug){
+        deleteById(drug.getId());
+    }
+
+    public Drug findByName(String name){
+        for(var drug : drugs) if(drug.getName().equalsIgnoreCase(name)) return drug;
+        return null;
     }
 
 }

@@ -118,7 +118,7 @@ public class DrugsTest {
 
         drugs.deleteById(1);
         assertEquals(0,drugs.count());
-        
+
         assertThrows(IdDoesNotExist.class, () -> drugs.deleteById(1));
     }
 
