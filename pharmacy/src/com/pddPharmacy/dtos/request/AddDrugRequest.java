@@ -1,13 +1,16 @@
 package com.pddPharmacy.dtos.request;
 
+import com.pddPharmacy.data.models.Category;
+import com.pddPharmacy.data.models.Type;
+
 import java.time.LocalDate;
 
 public class AddDrugRequest {
     private String name;
     private String type;
-    private String category;
+    private Category category;
     private LocalDate expiry;
-    private int quality;
+    private int quantity;
     private LocalDate manufacturedOn;
 
 
@@ -27,11 +30,11 @@ public class AddDrugRequest {
         this.type = type;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -43,12 +46,12 @@ public class AddDrugRequest {
         this.expiry = expiry;
     }
 
-    public int getQuality() {
-        return quality;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQuality(int quality) {
-        this.quality = quality;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public LocalDate getManufacturedOn() {

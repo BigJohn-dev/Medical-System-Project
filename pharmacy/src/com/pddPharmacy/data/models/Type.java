@@ -1,5 +1,5 @@
 package com.pddPharmacy.data.models;
 
 public enum Type {
-        TABLET, SYRUP, INJECTION, OINTMENT
+        ANTIBIOTICS, ANALGESIC, MULTIVITAMIN, ANTIFUNGAL, PROBIOTICS;
 }

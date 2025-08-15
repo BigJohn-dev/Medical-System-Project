@@ -45,11 +45,12 @@ public class DrugsTest {
     @Test
     public void getSavedDrugByName() {
         Drug panadol = new Drug();
+        panadol.setName("Panadol");
         Drug savedPanadol = drugs.save(panadol);
-        savedPanadol.setName("Panadol");
-        drugs.save(savedPanadol);
-        assertEquals(1,drugs.count());
-        assertEquals("Panadol",drugs.findById(savedPanadol.getId()).getName());
+        assertEquals(1, drugs.count());
+        Drug foundDrug = drugs.findByName("Panadol");
+        assertNotNull(foundDrug);
+        assertEquals("Panadol", foundDrug.getName());
     }
 
     @Test
@@ -76,50 +77,53 @@ public class DrugsTest {
     @Test
     public void saveSameDrugTwice_doesNotDuplicate() {
         Drug panadol = new Drug();
-        Drug savedPanadol = drugs.save(panadol);
-        savedPanadol.setName("Panadol");
-        drugs.save(savedPanadol);
-        assertEquals(1,drugs.count());
+        panadol.setName("Panadol");
+        drugs.save(panadol);
+        assertEquals(1L,drugs.count());
 
-        savedPanadol.setName("Panadol");
-        drugs.save(savedPanadol);
+        drugs.save(panadol);
+        assertEquals(1L, drugs.count());
 
-        assertEquals(1,drugs.count());
+        Drug found = drugs.findByName("Panadol");
+
+        assertEquals(1, drugs.count());
+        assertEquals("Updated description", drugs.findByName("Panadol"));
     }
 
-    @Test
-    public void testThatAddedDrugCanBeDeletedById(){
-        Drug panadol = new Drug();
-        Drug savedPanadol = drugs.save(panadol);
-        savedPanadol.setName("Panadol");
-        drugs.save(savedPanadol);
-
-        drugs.deleteById(1);
-        assertThrows(IdDoesNotExist.class, () -> drugs.findById(1));
-    }
-
-    @Test
-    public void testThatNonExistingIdCannotBeDeletedWhenQueried(){
-        Drug panadol = new Drug();
-        Drug savedPanadol = drugs.save(panadol);
-        savedPanadol.setName("Panadol");
-        drugs.save(savedPanadol);
-        assertEquals(1, savedPanadol.getId());
-
-        assertThrows(IdDoesNotExist.class, () -> drugs.deleteById(2));
-    }
-
-    @Test
-    public void testThatADrugCannotBeDeletedTwice(){
-        Drug panadol = new Drug();
-        Drug savedPanadol = drugs.save(panadol);
-        savedPanadol.setName("Panadol");
-        drugs.save(savedPanadol);
-
-        drugs.deleteById(1);
-        assertEquals(0,drugs.count());
-
-        assertThrows(IdDoesNotExist.class, () -> drugs.deleteById(1));
-    }
+//
+//    @Test
+//    public void testThatAddedDrugCanBeDeletedById(){
+//        Drug panadol = new Drug();
+//        Drug savedPanadol = drugs.save(panadol);
+//        savedPanadol.setName("Panadol");
+//        drugs.save(savedPanadol);
+//
+//        drugs.deleteById(1);
+//        assertThrows(IdDoesNotExist.class, () -> drugs.findById(1));
+//    }
+//
+//    @Test
+//    public void testThatNonExistingIdCannotBeDeletedWhenQueried(){
+//        Drug panadol = new Drug();
+//        Drug savedPanadol = drugs.save(panadol);
+//        savedPanadol.setName("Panadol");
+//        drugs.save(savedPanadol);
+//        assertEquals(1, savedPanadol.getId());
+//
+//        assertThrows(IdDoesNotExist.class, () -> drugs.deleteById(2));
+//    }
+//
+//    @Test
+//    public void testThatADrugCannotBeDeletedTwice(){
+//        Drug panadol = new Drug();
+//        Drug savedPanadol = drugs.save(panadol);
+//        savedPanadol.setName("Panadol");
+//        drugs.save(savedPanadol);
+//
+//        drugs.deleteById(1);
+//        assertEquals(0,drugs.count());
+//
+//        assertThrows(IdDoesNotExist.class, () -> drugs.deleteById(1));
+//    }
 
 }

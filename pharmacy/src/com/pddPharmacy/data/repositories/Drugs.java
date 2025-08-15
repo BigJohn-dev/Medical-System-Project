@@ -4,10 +4,11 @@ import com.pddPharmacy.data.models.Drug;
 import com.pddPharmacy.exceptions.IdDoesNotExist;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Drugs {
-    private ArrayList<Drug> drugs = new ArrayList<>();
+    private final List<Drug> drugs = new ArrayList<>();
 
     public long count() {
         return drugs.size();

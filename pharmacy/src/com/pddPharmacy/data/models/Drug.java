@@ -9,6 +9,7 @@ public class Drug {
     private Type type;
     private Category category;
     private LocalDate expiry;
+    private int quantity;
     private LocalDate manufactureOn;
     private LocalDateTime dateAdded;
 
@@ -42,6 +43,8 @@ public class Drug {
     public void setExpiry(LocalDate expiry) {
         this.expiry = expiry;
     }
+    public void setQuantity(int quantity){ this.quantity = quantity; }
+    public int getQuantity() {return quantity;}
     public LocalDate getManufactureOn() {
         return manufactureOn;
     }
